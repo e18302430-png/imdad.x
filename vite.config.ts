@@ -13,5 +13,8 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react/jsx-runtime'],
+  },
+  define: {
+    'process.env': {}
   }
 });
