@@ -1,10 +1,17 @@
-
 import { GoogleGenAI } from "@google/genai";
+
+// تعريف process.env لمنع أخطاء TypeScript إذا لم تكن الانواع موجودة
+declare var process: {
+  env: {
+    API_KEY: string;
+  };
+};
 
 // دالة مساعدة للحصول على نسخة الذكاء الاصطناعي بشكل آمن
 const getAI = () => {
     // يجب استخدام process.env.API_KEY حصراً حسب التوجيهات
-    const apiKey = (process as any).env.API_KEY;
+    // Vite سيقوم باستبدال هذا المتغير بالقيمة النصية أثناء البناء
+    const apiKey = process.env.API_KEY;
     
     if (!apiKey) {
         console.warn("تنبيه: مفتاح Gemini API غير موجود. لن تعمل ميزات الذكاء الاصطناعي.");
